@@ -31,7 +31,15 @@ namespace Restaurant.Models
         [StringLength(100, ErrorMessageResourceName = "tamañoMaximo")]
         public string Descripcion { get; set; }
 
-        //[InverseProperty("Area")]
+        public Guid? UbicacionId { get; set; }
+        public Guid? PrecioAreaId { get; set; }
+
+        [ForeignKey("UbicacionId")]
+        public virtual Ubicacion Ubicacion { get; set; }
+
+        [ForeignKey("PrecioAreaId")]
+        public virtual PreciosAreas PrecioArea { get; set; }
+
         public virtual ICollection<AreaCentroElab> AreaCentroElab { get; set; }
 
         //[InverseProperty("Area")]

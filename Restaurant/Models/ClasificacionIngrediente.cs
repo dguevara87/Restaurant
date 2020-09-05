@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Restaurant.Models;
 
-namespace Restaurant.Model
+namespace Restaurant.Models
 {
     public class ClasificacionIngrediente 
     {

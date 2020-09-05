@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Restaurant.Models;
-using SIGECO2_DATAMODEL.Model;
 
 namespace Restaurant.Models
 {

@@ -14,7 +14,7 @@ namespace Restaurant.Models
 
         [Key]
         public Guid Id { get; set; }
-
+        public string Nombre { get; set; }
         public Guid? AreaId { get; set; }
 
         [ForeignKey("AreaId")]

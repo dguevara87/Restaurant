@@ -27,7 +27,11 @@ namespace Restaurant.Models
         [ForeignKey("EmpleadoId")]
         public virtual Empleado Empleado { get; set; }
 
-        //[InverseProperty("Reservas")]
+        public Guid? ClienteId { get; set; }
+
+        [ForeignKey("ClienteId")]
+        public virtual Clientes Cliente { get; set; }
+        
         public virtual ICollection<Mesas> Mesas { get; set; }
     }
 }

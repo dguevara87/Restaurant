@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Org.BouncyCastle.Math.EC.Rfc7748;
-using SIGECO2_DATAMODEL.Model;
+
+
 
 namespace Restaurant.Models
 {
@@ -20,7 +21,9 @@ namespace Restaurant.Models
         public virtual DbSet<Area> Area { get; set; }
         public virtual DbSet<CentrosElaboracion> CentrosElaboracion { get; set; }
         public virtual DbSet<ClasificacionIngrediente> ClasificacionIngrediente { get; set; }
+        public virtual DbSet<ClasificacionClientes> ClasificacionClientes { get; set; }
         public virtual DbSet<ClasificacionProducto> ClasificacionProducto { get; set; }
+        public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<EstadoMesa> EstadoMesa { get; set; }
         public virtual DbSet<EstadoOrden> EstadoOrden { get; set; }
@@ -30,9 +33,11 @@ namespace Restaurant.Models
         public virtual DbSet<Mesas> Mesas { get; set; }
         public virtual DbSet<Orden> Orden { get; set; }
         public virtual DbSet<OrdenProducto> OrdenProducto { get; set; }
+        public virtual DbSet<PreciosAreas> PreciosAreas { get; set; }
         public virtual DbSet<ProductoMenu> ProductoMenu { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Reservas> Reservas { get; set; }
+        public virtual DbSet<Ubicacion> Ubicacion { get; set; }
         public virtual DbSet<UnidadesMedidas> UnidadesMedidas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

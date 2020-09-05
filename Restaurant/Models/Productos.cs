@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SIGECO2_DATAMODEL.Model;
 
 namespace Restaurant.Models
 {

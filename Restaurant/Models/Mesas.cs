@@ -14,6 +14,7 @@ namespace Restaurant.Models
 
         [Key]
         public Guid Id { get; set; }
+        public int Numero { get; set; }
         public int Capacidad { get; set; }
         public Guid EstadoId { get; set; }
         public Guid? ReservaId { get; set; }

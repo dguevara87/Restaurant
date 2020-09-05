@@ -19,6 +19,8 @@ namespace Restaurant.Models
 
         [Key]
         public Guid Id { get; set; }
+        public int Numero { get; set; }
+        public int Descuento { get; set; }
         public decimal Importe { get; set; }
         public DateTime Creada { get; set; }
         public DateTime? Servida { get; set; }

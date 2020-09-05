@@ -35,7 +35,17 @@ namespace Restaurant.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
+                    b.Property<Guid?>("PrecioAreaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UbicacionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PrecioAreaId");
+
+                    b.HasIndex("UbicacionId");
 
                     b.ToTable("Area");
                 });
@@ -80,6 +90,106 @@ namespace Restaurant.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CentrosElaboracion");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.ClasificacionClientes", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("PrecioPorciento")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClasificacionClientes");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.ClasificacionIngrediente", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClasificacionIngrediente");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.ClasificacionProducto", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClasificacionProducto");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.Clientes", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Apellido1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Apellido2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ClasificacionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Codigo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Identificacion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Visitas")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClasificacionId");
+
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("Restaurant.Models.Empleado", b =>
@@ -259,6 +369,9 @@ namespace Restaurant.Migrations
                     b.Property<Guid?>("AreaId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AreaId");
@@ -280,6 +393,9 @@ namespace Restaurant.Migrations
 
                     b.Property<Guid>("EstadoId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("ReservaId")
                         .HasColumnType("uniqueidentifier");
@@ -307,6 +423,9 @@ namespace Restaurant.Migrations
                     b.Property<DateTime>("Creada")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Descuento")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("EmpleadoId")
                         .HasColumnType("uniqueidentifier");
 
@@ -321,6 +440,9 @@ namespace Restaurant.Migrations
 
                     b.Property<Guid?>("MesaId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("Servida")
                         .HasColumnType("datetime2");
@@ -368,6 +490,30 @@ namespace Restaurant.Migrations
                     b.HasIndex("ProductoId");
 
                     b.ToTable("OrdenProducto");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.PreciosAreas", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("Precio")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PreciosAreas");
                 });
 
             modelBuilder.Entity("Restaurant.Models.ProductoMenu", b =>
@@ -427,6 +573,9 @@ namespace Restaurant.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ClienteId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("EmpleadoId")
                         .HasColumnType("uniqueidentifier");
 
@@ -441,9 +590,32 @@ namespace Restaurant.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClienteId");
+
                     b.HasIndex("EmpleadoId");
 
                     b.ToTable("Reservas");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.Ubicacion", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ubicacion");
                 });
 
             modelBuilder.Entity("Restaurant.Models.UnidadesMedidas", b =>
@@ -467,46 +639,15 @@ namespace Restaurant.Migrations
                     b.ToTable("UnidadesMedidas");
                 });
 
-            modelBuilder.Entity("SIGECO2_DATAMODEL.Model.ClasificacionIngrediente", b =>
+            modelBuilder.Entity("Restaurant.Models.Area", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("Restaurant.Models.PreciosAreas", "PrecioArea")
+                        .WithMany("Areas")
+                        .HasForeignKey("PrecioAreaId");
 
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ClasificacionIngrediente");
-                });
-
-            modelBuilder.Entity("SIGECO2_DATAMODEL.Model.ClasificacionProducto", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ClasificacionProducto");
+                    b.HasOne("Restaurant.Models.Ubicacion", "Ubicacion")
+                        .WithMany("Areas")
+                        .HasForeignKey("UbicacionId");
                 });
 
             modelBuilder.Entity("Restaurant.Models.AreaCentroElab", b =>
@@ -522,9 +663,16 @@ namespace Restaurant.Migrations
                         .HasForeignKey("CentroElaboracionId");
                 });
 
+            modelBuilder.Entity("Restaurant.Models.Clientes", b =>
+                {
+                    b.HasOne("Restaurant.Models.ClasificacionClientes", "Clasificacion")
+                        .WithMany("Clientes")
+                        .HasForeignKey("ClasificacionId");
+                });
+
             modelBuilder.Entity("Restaurant.Models.Ingrediente", b =>
                 {
-                    b.HasOne("SIGECO2_DATAMODEL.Model.ClasificacionIngrediente", "ClasificacionIngrediente")
+                    b.HasOne("Restaurant.Models.ClasificacionIngrediente", "ClasificacionIngrediente")
                         .WithMany("Ingredientes")
                         .HasForeignKey("ClasificacionId");
 
@@ -627,7 +775,7 @@ namespace Restaurant.Migrations
 
             modelBuilder.Entity("Restaurant.Models.Productos", b =>
                 {
-                    b.HasOne("SIGECO2_DATAMODEL.Model.ClasificacionProducto", "ClasificacionProducto")
+                    b.HasOne("Restaurant.Models.ClasificacionProducto", "ClasificacionProducto")
                         .WithMany("Productos")
                         .HasForeignKey("ClasificacionId");
 
@@ -638,6 +786,10 @@ namespace Restaurant.Migrations
 
             modelBuilder.Entity("Restaurant.Models.Reservas", b =>
                 {
+                    b.HasOne("Restaurant.Models.Clientes", "Cliente")
+                        .WithMany("Reservas")
+                        .HasForeignKey("ClienteId");
+
                     b.HasOne("Restaurant.Models.Empleado", "Empleado")
                         .WithMany("Reservas")
                         .HasForeignKey("EmpleadoId");
