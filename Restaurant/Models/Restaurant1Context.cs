@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Org.BouncyCastle.Math.EC.Rfc7748;
+using Restaurant.Models;
 
 
 
@@ -48,6 +49,12 @@ namespace Restaurant.Models
                 optionsBuilder.UseSqlServer("Server=.;Database=Restaurant1;Trusted_Connection=True;");
             }
         }
+
+        public DbSet<Restaurant.Models.AreaCentroElab> AreaCentroElab { get; set; }
+
+        public DbSet<Restaurant.Models.EstadoProducto> EstadoProducto { get; set; }
+
+        public DbSet<Restaurant.Models.IngredienteProducto> IngredienteProducto { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
