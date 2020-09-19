@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Restaurant.Models;
+
 //using Restaurant.Models;
 
 namespace Restaurant
@@ -28,9 +30,7 @@ namespace Restaurant
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //services.AddDbContext<RestaurantContext>(options =>
-
-            //options.UseSqlServer(Configuration.GetConnectionString("inmobiliariaContext")));
+            services.AddDbContext<Restaurant1Context>(options => options.UseSqlServer(Configuration.GetConnectionString("RestaurantContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

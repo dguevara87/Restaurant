@@ -1,9 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Org.BouncyCastle.Math.EC.Rfc7748;
-using Restaurant.Models;
-
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 
 namespace Restaurant.Models
@@ -40,16 +36,7 @@ namespace Restaurant.Models
         public virtual DbSet<Reservas> Reservas { get; set; }
         public virtual DbSet<Ubicacion> Ubicacion { get; set; }
         public virtual DbSet<UnidadesMedidas> UnidadesMedidas { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.;Database=Restaurant1;Trusted_Connection=True;");
-            }
-        }
-
+        
         public DbSet<Restaurant.Models.AreaCentroElab> AreaCentroElab { get; set; }
 
         public DbSet<Restaurant.Models.EstadoProducto> EstadoProducto { get; set; }
